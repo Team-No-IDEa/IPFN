@@ -72,9 +72,19 @@ class Gui():
             bd=10,
             height=130,
             bg="black")
+        frm_url_button = tk.Frame(master=frm_url_border)
         frm_url = tk.Frame(master=frm_url_border, height=110, bg="Light gray")
         frm_url_border.pack(fill=tk.X)
+        frm_url_button.pack(fill=tk.BOTH,side=tk.RIGHT)
         frm_url.pack(fill=tk.X)
+
+        #create entry button
+
+        self.btn = tk.Button(master=frm_url_button,bg="#998eae",text="   Enter   ",command=lambda: self.get_pages(),font=(
+                    "MS Sans Serif",
+                    18,
+                    "bold"))
+        self.btn.pack(fill=tk.BOTH, expand=True)
 
         # create webpage frame
 
@@ -116,17 +126,18 @@ class Gui():
         self.ent_url = tk.Entry(master=frm_url, font=("MS Sans Serif", 30))
         self.ent_url.pack(fill=tk.BOTH, expand=True)
 
-    def get_pages(self, frm_main_right):
+    def get_pages(self):
         print("test3")
         self.clear_suggested_frames()
         # check url is valid
         if (self.ent_url is not None) and Web.validate_url(self.ent_url.get()):
-            print("Test")
+            pass
         else:
             "Test2"
             # pass it into the main code
 
         #self.setup_suggested_page_frames(frm_main_right, 5)
+        return True
 
     # todo: html/css reader for mini-webpage in the application
 
@@ -139,10 +150,8 @@ class Gui():
         window = self.startup()
         frm_url, frm_web, frm_main_right = self.create_frames(window)
         self.setup_url_frm(frm_url, frm_main_right)
-        while True:
-            if self.ent_url.get() != inp_buffer:
-                inp_buffer = self.ent_url.get()
-                self.get_pages(frm_main_right)
+        self.setup_suggested_page_frames(frm_main_right,  5)
+        window.mainloop()
 
 
 if __name__ == "__main__":
