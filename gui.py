@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkf
-from main import *
+from web import *
 
 class Gui():
 	def startup(self):
@@ -83,7 +83,7 @@ class Gui():
 
 
 	def setup_url_frm(self, frm_url, right_frm):
-		self.ent_url = tk.Entry(master=frm_url, font=("MS Sans Serif",30), command=self.get_pages(right_frm))
+		self.ent_url = tk.Entry(master=frm_url, font=("MS Sans Serif",30))
 		self.ent_url.pack(fill=tk.BOTH, expand=True)
 
 
@@ -91,7 +91,7 @@ class Gui():
 		print("test3")
 		self.clear_suggested_frames()
 		# check url is valid 
-		if (self.ent_url is not None) and self.validate_url(self.ent_url.get()):
+		if (self.ent_url is not None) and Web.validate_url(self.ent_url.get()):
 			print("Test")
 		else:
 			"Test2"
@@ -99,23 +99,24 @@ class Gui():
 
 		#self.setup_suggested_page_frames(frm_main_right, 5)
 
-	# todo: Parse urls to check if they are valid 
-	# todo: set up the suggested tabs better
 	# todo: html/css reader for mini-webpage in the application
 
 
 	def __init__(self):
-		
+
 		self.frm_suggest_lst = [] 
 		self.frm_suggest_lst_border = []
 		self.ent_url = None
+		inp_buffer = ""
 
 		window = self.startup()
 		frm_url, frm_web, frm_main_right = self.create_frames(window)
 		self.setup_url_frm(frm_url,frm_main_right)
-		window.mainloop()
+		while True:
+			if self.ent_url.get() != inp_buffer:
+				inp_buffer = self.ent_url.get()
+				self.get_pages(frm_main_right)
 
 
 if __name__ == "__main__":
-	a = Gui()
-	a.__init__()
+	b = Gui()
