@@ -1,14 +1,35 @@
 from bs4 import BeautifulSoup
 import requests
+from googlesearch import search
+from htmldate import find_date
 
 def main():
     print(get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism"))
+    query = get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism")
+
+    print(get_similar_sites(query))
+    sites = get_similar_sites(query)
+
+    print(order_sites_by_date(sites))
 
 def get_title(url: str) -> str:
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     title = soup.title.string
     return title
+
+def get_similar_sites(query: str) -> list:
+    result = []
+    for i in search(str(query), tld="com", num=5, stop=5, pause=2):
+        result.append(i)
+    return result
+
+def order_sites_by_date(sites: list):
+    result = []
+    for site in sites:
+        result.append(find_date(site))
+    return result
+
 
 if __name__ == "__main__":
     main()
