@@ -10,7 +10,10 @@ def main():
     print(get_similar_sites(query))
     sites = get_similar_sites(query)
 
-    print(order_sites_by_date(sites))
+    print(date_of_sites(sites))
+    dates = date_of_sites(sites)
+
+    print(combine_website_and_date(sites, dates))
 
 def get_title(url: str) -> str:
     response = requests.get(url)
@@ -24,11 +27,14 @@ def get_similar_sites(query: str) -> list:
         result.append(i)
     return result
 
-def order_sites_by_date(sites: list):
+def date_of_sites(sites: list) -> list:
     result = []
     for site in sites:
         result.append(find_date(site))
     return result
+
+def combine_website_and_date(sites: list, dates: list) -> list:
+    return list(zip(sites, dates))
 
 
 if __name__ == "__main__":
