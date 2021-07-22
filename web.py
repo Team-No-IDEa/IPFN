@@ -5,6 +5,7 @@ from htmldate import find_date
 import validators
 
 class Web():
+    """Initialise Web class for functionality of the program."""
     @staticmethod
     def get_title(url: str) -> str:
         response = requests.get(url)

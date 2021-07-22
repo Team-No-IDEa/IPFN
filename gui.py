@@ -3,6 +3,7 @@ import tkinter.font as tkf
 from web import *
 
 class Gui():
+	"""Initialise Gui class to manage the GUI."""
 	def startup(self):
 		"""Creates the tkinter window
 		Param: 

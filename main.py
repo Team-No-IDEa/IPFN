@@ -1,6 +1,7 @@
 from web import *
 
 class Run():
+    """Initialise Run class to run the program."""
     def __init__(self):
         print(Web.get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism"))
         query = Web.get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism")
