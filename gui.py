@@ -2,8 +2,7 @@ import tkinter as tk
 import tkinter.font as tkf
 from main import *
 
-class gui():
-
+class Gui():
 	def startup(self):
 		"""Creates the tkinter window
 		Param: 
@@ -92,7 +91,7 @@ class gui():
 		print("test3")
 		self.clear_suggested_frames()
 		# check url is valid 
-		if (self.ent_url is not None) and validate_url(self.ent_url.get()):
+		if (self.ent_url is not None) and self.validate_url(self.ent_url.get()):
 			print("Test")
 		else:
 			"Test2"
@@ -118,4 +117,5 @@ class gui():
 
 
 if __name__ == "__main__":
-	a = gui()
+	a = Gui()
+	a.__init__()
