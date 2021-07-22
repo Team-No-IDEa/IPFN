@@ -14,6 +14,9 @@ def main():
     dates = date_of_sites(sites)
 
     print(combine_website_and_date(sites, dates))
+    final_list = combine_website_and_date(sites, dates)
+
+    print(sorted(final_list, key=take_second))
 
 def get_title(url: str) -> str:
     response = requests.get(url)
@@ -35,6 +38,9 @@ def date_of_sites(sites: list) -> list:
 
 def combine_website_and_date(sites: list, dates: list) -> list:
     return list(zip(sites, dates))
+
+def take_second(elem):
+    return elem[1]
 
 
 if __name__ == "__main__":
