@@ -2,11 +2,13 @@ from bs4 import BeautifulSoup
 import requests
 
 def main():
-    url = "https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism"
-    response = requests.get(url)
+    print(get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism"))
 
+def get_title(url: str) -> str:
+    response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
-    print(soup.title.string)
+    title = soup.title.string
+    return title
 
 if __name__ == "__main__":
     main()
