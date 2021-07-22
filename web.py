@@ -4,6 +4,7 @@ from googlesearch import search
 from htmldate import find_date
 import validators
 
+
 class Web():
     """Initialise Web class for functionality of the program."""
     @staticmethod
