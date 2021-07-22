@@ -2,21 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from googlesearch import search
 from htmldate import find_date
-
-def main():
-    print(get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism"))
-    query = get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism")
-
-    print(get_similar_sites(query))
-    sites = get_similar_sites(query)
-
-    print(date_of_sites(sites))
-    dates = date_of_sites(sites)
-
-    print(combine_website_and_date(sites, dates))
-    final_list = combine_website_and_date(sites, dates)
-
-    print(sorted(final_list, key=take_second))
+import validators
 
 def get_title(url: str) -> str:
     response = requests.get(url)
@@ -42,6 +28,24 @@ def combine_website_and_date(sites: list, dates: list) -> list:
 def take_second(elem):
     return elem[1]
 
+def validate_url(url: str) -> bool:
+    return validators.url(url)
+
+def main():
+    print(get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism"))
+    query = get_title("https://www.historyofvaccines.org/content/articles/do-vaccines-cause-autism")
+
+    print(get_similar_sites(query))
+    sites = get_similar_sites(query)
+
+    print(date_of_sites(sites))
+    dates = date_of_sites(sites)
+
+    print(combine_website_and_date(sites, dates))
+    final_list = combine_website_and_date(sites, dates)
+
+    print(sorted(final_list, key=take_second))
+    
 
 if __name__ == "__main__":
     main()
